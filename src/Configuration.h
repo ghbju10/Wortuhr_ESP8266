@@ -10,16 +10,16 @@
 //******************************************************************************
 
 #define WIFIHOSTNAME "WORTUHR"                 // Das ist der default Hostname/Systemname. Der eigentliche Systemname wird in Settings eingestellt.
-#define WIFI_SETUP_TIMEOUT 300                 // So lange ist der AP (AccessPoint) zum eingeben der WiFi Parameter an
+#define WIFI_SETUP_TIMEOUT 180                 // So lange ist der AP (AccessPoint) zum eingeben der WiFi Parameter an
 #define WIFI_AP_PASS "12345678"                // Wifi Pass für den AP
 #define OTA_PASS "1234"                        // Passwort für den OTA (Over the Air) Update
 #define NTP_SERVER "fritz.box"                 // Das ist der default Name des Zeitservers. Der eigentliche Zeitserver wird in Settings eingestellt.
-//#define SHOW_IP                              // Zeigt die IP-Adresse beim Start
+#define SHOW_IP                              // Zeigt die IP-Adresse beim Start
 #define WIFI_BEEPS                             // ob die WLAN Verbunden Meldung kommt
 //#define ESP_LED                              // OnBoard LED blinkt im Sekundentakt
 
 //#define NONE_TECHNICAL_ZERO                  // ob die Null bei Feed mit oder ohne Schrägstrich angezeigt wird.
-#define AUTO_MODECHANGE_TIME 420               // Default AutoMode Change Periode. Die eigentliche Periode wird in Settings eingestellt.
+#define AUTO_MODECHANGE_TIME 900               // Default AutoMode Change Periode. Die eigentliche Periode wird in Settings eingestellt.
 #define SHOW_MODE_TIMEOUT 3500                 // Timer bis es im Mode Modus zum nächsten Mode geht
 #define FEED_SPEED 120                         // wie schnell die Buchstaben über die Uhr huschen
 #define TRANSITION_SPEED 90                    // wie schnell die Transitions laufen
@@ -54,15 +54,12 @@
 #define LONGITUDE 9.83                                  // Die RunRise Lib ist in der Bibliotheksverwaltung zu finden.
 #define LATITUDE 50.66                                  // Dafür wird der Standort benötigt. Kann z.B. über google maps erfolgen.
 
-// SunRise/SunSet Animationen
-#define ANI_SUNRISE "SUNRISE"                           // Name der Sonnenaufgangsanimation
-#define ANI_SUNSET "SUNSET"                             // Name der Sonnenuntergangsanimation
 
 //#define FRONTCOVER_EN
-#define FRONTCOVER_DE_DE
+//#define FRONTCOVER_DE_DE
 //#define FRONTCOVER_DE_SW
 //#define FRONTCOVER_DE_BA
-//#define FRONTCOVER_DE_SA
+#define FRONTCOVER_DE_SA
 //#define FRONTCOVER_DE_MKF_DE
 //#define FRONTCOVER_DE_MKF_SW
 //#define FRONTCOVER_DE_MKF_BA
@@ -119,9 +116,11 @@
 #define SERIAL_SPEED 115200
 
 //#define ONOFF_BUTTON
-#define MODE_BUTTON
+//#define MODE_BUTTON
 //#define SHOW_TIME_BUTTON
 
+#define NUMPIXELS 114
+//#define ESP_LED
 
 // Einstellen der min/max Helligkeiten
 #define MIN_BRIGHTNESS 5
@@ -219,8 +218,8 @@
 #define AUDIO_H05 20
 #define AUDIO_H06 30
 #define AUDIO_H07 50
-#define AUDIO_H08 80
-#define AUDIO_H09 90
+#define AUDIO_H08 100
+#define AUDIO_H09 100
 #define AUDIO_H10 100
 #define AUDIO_H11 100
 #define AUDIO_H12 100
@@ -232,8 +231,8 @@
 #define AUDIO_H18 100
 #define AUDIO_H19 100
 #define AUDIO_H20 100
-#define AUDIO_H21 90
-#define AUDIO_H22 80
+#define AUDIO_H21 100
+#define AUDIO_H22 100
 #define AUDIO_H23 60
 #define AUDIO_H24 30
 
@@ -252,24 +251,19 @@
 #define IR_LETTER_X 8
 #define IR_LETTER_Y 10
 
-#define NUMPIXELS 115                       // mit Alarm LED
-//#define NUMPIXELS 114                       // ohne Alarm LED
-
 // Das LED Layout (Siehe in LedDriver.cpp):
-//#define LED_LAYOUT_HORIZONTAL_1
-#define LED_LAYOUT_HORIZONTAL_2         // B
+#define LED_LAYOUT_HORIZONTAL_1
 //#define LED_LAYOUT_VERTICAL_1
 //#define LED_LAYOUT_VERTICAL_2
-//#define LED_LAYOUT_VERTICAL_3           // A
+//#define LED_LAYOUT_VERTICAL_3
 
 //******************************************************************************
 // Einstellungen LED Type
 //******************************************************************************
-//#define LED_LIBRARY_LPD8806RGBW              // https://github.com/bracci/LPD8806RGBW for download Lib
+#define LED_LIBRARY_LPD8806RGBW              // https://github.com/bracci/LPD8806RGBW for download Lib
 //-------------------------------
 
-#define LED_LIBRARY_NEOPIXEL
-
+//#define LED_LIBRARY_NEOPIXEL
 #define NEOPIXEL_TYPE NEO_GRB + NEO_KHZ800     // see Adafruit_NeoPixel.h for help
 
 //#define NEOPIXEL_TYPE NEO_GRBW + NEO_KHZ800
@@ -321,20 +315,21 @@
 // ESP8266 Anschlüsse:
 //******************************************************************************
 
-//#define PIN_IR_RECEIVER  D6   // D6
-#define PIN_WIRE_SCL     SCL    // D1 SCL
-#define PIN_WIRE_SDA     SDA    // D2 SDA
-#define PIN_MODE_BUTTON  D7     // D7
-#define PIN_LED          D4     // LED_BUILTIN D4 ESP8266_LED
-#define PIN_AUDIO_RX     D5     // D5
-#define PIN_AUDIO_TX     D3     // D3
-#define PIN_AUDIO_BUSY   D0     // D0 // kein Interrupt!
-//#define PIN_BUZZER       D4   // D4
-#define PIN_LEDS_CLOCK   D6   // wird für LPD8806RGBW benötigt
-#define PIN_LEDS_DATA    D8     // D8 (z.B. WS2812B)
-#define PIN_LDR          A0     // A0 ADC
-//#define PIN_SHOW_TIME_BUTTON  // TXD0
-//#define PIN_ONOFF_BUTTON RXD0 // RXD0
+//#define PIN_IR_RECEIVER  D0   //16 // D0 (no interrupt)
+#define PIN_WIRE_SCL   SCL  //  05 // D1 SCL
+#define PIN_WIRE_SDA   SDA  //  04 // D2 SDA
+//#define PIN_MODE_BUTTON  D7   //   00 // D3 LOW_Flash
+#define PIN_LED          D4 // LED_BUILTIN //02 // D4 ESP8266_LED
+#define PIN_AUDIO_RX     D5
+#define PIN_AUDIO_TX     D3
+#define PIN_AUDIO_BUSY   D0
+//#define PIN_BUZZER       D4   //14 // D5
+//#define PIN_DHT22        D6   //12 // D6
+#define PIN_LEDS_CLOCK   D7   //13 // D7  // wird für LPD8806RGBW benötigt
+#define PIN_LEDS_DATA    D8   // 15 // D8
+#define PIN_LDR          A0    // A0 // ADC
+//#define PIN_SHOW_TIME_BUTTON  D6 //TXD0 // 01 // TXD0
+//#define PIN_ONOFF_BUTTON RXD0 //03 // RXD0
 // GPIO 06 to GPIO 11 are
 // used for flash memory databus
 
