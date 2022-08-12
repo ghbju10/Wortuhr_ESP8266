@@ -16,7 +16,7 @@
 #define NTP_SERVER "fritz.box"                 // Das ist der default Name des Zeitservers. Der eigentliche Zeitserver wird in Settings eingestellt.
 #define SHOW_IP                              // Zeigt die IP-Adresse beim Start
 #define WIFI_BEEPS                             // ob die WLAN Verbunden Meldung kommt
-//#define ESP_LED                              // OnBoard LED blinkt im Sekundentakt
+#define ESP_LED                                // OnBoard LED blinkt im Sekundentakt
 
 //#define NONE_TECHNICAL_ZERO                  // ob die Null bei Feed mit oder ohne Schrägstrich angezeigt wird.
 #define AUTO_MODECHANGE_TIME 420               // Default AutoMode Change Periode. Die eigentliche Periode wird in Settings eingestellt.
@@ -24,11 +24,11 @@
 #define FEED_SPEED 120                         // wie schnell die Buchstaben über die Uhr huschen
 #define TRANSITION_SPEED 90                    // wie schnell die Transitions laufen
 
-#define MAXEVENTS 25                           // wie viele Events maximal angelegt werden können                           
+#define MAXEVENTS  40                          // wie viele Events maximal angelegt werden können                           
 #define EVENT_TIME 1800                        // Das ist die default Event Intervall. Der eigentliche Intervall wird am Event definiert
 
 #define ALARM_LED_COLOR RED                    // Farbe der Alarm LED
-#define ABUSE_CORNER_LED_FOR_ALARM             // Rechte obere Minuten LED wird zur Alarm LED
+//#define ABUSE_CORNER_LED_FOR_ALARM             // Rechte obere Minuten LED wird zur Alarm LED
 
 //#define POWERON_SELFTEST                     // LEDs werden beim anschalten mit versch. Farben getestet. Der Test kann auch im Mode Modus bei nochmalige betätigen des ModeButtons während der Sekunden Ausgabe gestartet werden. 
 // welche Modes gibt es:
@@ -51,9 +51,9 @@
 #define OPENWEATHER_PERIODE 1800                        // wie oft in Sekunden openweather.org aufgerufen wird
 #define OPENWEATHER_MAX_ERROR 20                        // bei Fehler: wie oft es pro Tag versucht wird bis es aufgegeben wird
 
-//#define SunRiseLib                                    // falls kein API Key vorhanden ist kann Sonnenaufgang/Sonnenuntergang über die Lib SunRise.h berechnet werden.
-#define LONGITUDE 9.83                                  // Die RunRise Lib ist in der Bibliotheksverwaltung zu finden.
-#define LATITUDE 50.66                                  // Dafür wird der Standort benötigt. Kann z.B. über google maps erfolgen.
+#define SunRiseLib                                      // falls kein API Key vorhanden ist kann Sonnenaufgang/Sonnenuntergang über die Lib SunRise.h berechnet werden.
+#define LONGITUDE 8.244                                 // Die RunRise Lib ist in der Bibliotheksverwaltung zu finden.
+#define LATITUDE 48.766                                 // Dafür wird der Standort benötigt. Kann z.B. über google maps erfolgen. Die eigentliche Standort wird in Settings eingestellt.
 
 // SunRise/SunSet Animationen
 #define ANI_SUNRISE "SUNRISE"                           // Name der Sonnenaufgangsanimation
@@ -246,6 +246,7 @@
 
 
 //#define IR_RECEIVER
+#ifdef IR_RECEIVER
 //#define IR_CODE_ONOFF 16769565 // HX1838 Remote CH+
 //#define IR_CODE_TIME  16753245 // HX1838 Remote CH-
 //#define IR_CODE_MODE  16736925 // HX1838 Remote CH
@@ -256,6 +257,8 @@
 //#define IR_LETTER_OFF
 #define IR_LETTER_X 8
 #define IR_LETTER_Y 10
+
+#endif  // Ende IR_RECEIVER
 
 //#define NUMPIXELS 115                       // mit Alarm LED
 #define NUMPIXELS 114                       // ohne Alarm LED
