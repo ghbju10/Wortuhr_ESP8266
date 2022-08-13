@@ -14,7 +14,7 @@
 #define WIFI_AP_PASS "12345678"                // Wifi Pass für den AP
 #define OTA_PASS "1234"                        // Passwort für den OTA (Over the Air) Update
 #define NTP_SERVER "fritz.box"                 // Das ist der default Name des Zeitservers. Der eigentliche Zeitserver wird in Settings eingestellt.
-#define SHOW_IP                              // Zeigt die IP-Adresse beim Start
+//#define SHOW_IP                              // Zeigt die IP-Adresse beim Start
 #define WIFI_BEEPS                             // ob die WLAN Verbunden Meldung kommt
 #define ESP_LED                                // OnBoard LED blinkt im Sekundentakt
 
@@ -43,9 +43,8 @@
 //https://openweathermap.org/
 // Test: http://api.openweathermap.org/data/2.5/weather?q=Baden-Baden,de&lang=de&units=metric&appid=<APIKEY>
 #define APIKEY                                          // Zum abschalten von Openweather auskommentieren.
-#define DEFAULTAPIKEY "3195311c0dc8e66e8833ce562f6afac0"   // Hier kann dein default APIKEY von openweathermap rein. Die eigentliche APIKey wird in Settings eingestellt.
-//#define LOCATION "Baden-Baden,de"                       // Hier kann dein default openweathermap Location rein. Die eigentliche LOCATION wird in Settings eingestellt.
-#define LOCATION "Lichtentanne,de"
+#define DEFAULTAPIKEY "OpenWeather APIKEY"              // Hier kann dein default APIKEY von openweathermap rein. Die eigentliche APIKey wird in Settings eingestellt.
+#define LOCATION "Baden-Baden,de"                       // Hier kann dein default openweathermap Location rein. Die eigentliche LOCATION wird in Settings eingestellt.
 //#define LOCATION "Zurich, CH"
 //#define LOCATION "Hong Kong, HK"
 #define OPENWEATHER_PERIODE 1800                        // wie oft in Sekunden openweather.org aufgerufen wird
@@ -60,10 +59,10 @@
 #define ANI_SUNSET "SUNSET"                             // Name der Sonnenuntergangsanimation
 
 //#define FRONTCOVER_EN
-//#define FRONTCOVER_DE_DE
+#define FRONTCOVER_DE_DE
 //#define FRONTCOVER_DE_SW
 //#define FRONTCOVER_DE_BA
-#define FRONTCOVER_DE_SA
+//#define FRONTCOVER_DE_SA
 //#define FRONTCOVER_DE_MKF_DE
 //#define FRONTCOVER_DE_MKF_SW
 //#define FRONTCOVER_DE_MKF_BA
@@ -120,7 +119,7 @@
 #define SERIAL_SPEED 115200
 
 //#define ONOFF_BUTTON
-//#define MODE_BUTTON
+#define MODE_BUTTON
 //#define SHOW_TIME_BUTTON
 
 
@@ -224,8 +223,8 @@
 #define AUDIO_H05 20
 #define AUDIO_H06 30
 #define AUDIO_H07 50
-#define AUDIO_H08 100
-#define AUDIO_H09 100
+#define AUDIO_H08 80
+#define AUDIO_H09 90
 #define AUDIO_H10 100
 #define AUDIO_H11 100
 #define AUDIO_H12 100
@@ -237,8 +236,8 @@
 #define AUDIO_H18 100
 #define AUDIO_H19 100
 #define AUDIO_H20 100
-#define AUDIO_H21 100
-#define AUDIO_H22 100
+#define AUDIO_H21 90
+#define AUDIO_H22 80
 #define AUDIO_H23 60
 #define AUDIO_H24 30
 
@@ -260,12 +259,13 @@
 
 #endif  // Ende IR_RECEIVER
 
-//#define NUMPIXELS 115                       // mit Alarm LED
-#define NUMPIXELS 114                       // ohne Alarm LED
+#define NUMPIXELS 115                       // mit Alarm LED
+//#define NUMPIXELS 114                       // ohne Alarm LED
 
 // Das LED Layout (Siehe in LedDriver.cpp):
-#define LED_LAYOUT_HORIZONTAL_1
+//#define LED_LAYOUT_HORIZONTAL_1
 //#define LED_LAYOUT_HORIZONTAL_2         // B
+#define LED_LAYOUT_HORIZONTAL_3          // C (260x260)
 //#define LED_LAYOUT_VERTICAL_1
 //#define LED_LAYOUT_VERTICAL_2
 //#define LED_LAYOUT_VERTICAL_3           // A (390x390)
@@ -273,10 +273,10 @@
 //******************************************************************************
 // Einstellungen LED Type
 //******************************************************************************
-#define LED_LIBRARY_LPD8806RGBW              // https://github.com/bracci/LPD8806RGBW for download Lib
+//#define LED_LIBRARY_LPD8806RGBW              // https://github.com/bracci/LPD8806RGBW for download Lib
 //-------------------------------
 
-//#define LED_LIBRARY_NEOPIXEL
+#define LED_LIBRARY_NEOPIXEL
 
 #define NEOPIXEL_TYPE NEO_GRB + NEO_KHZ800     // see Adafruit_NeoPixel.h for help
 
@@ -329,23 +329,21 @@
 // ESP8266 Anschlüsse:
 //******************************************************************************
 
-//#define PIN_IR_RECEIVER  D0   //16 // D0 (no interrupt)
-#define PIN_WIRE_SCL   SCL  //  05 // D1 SCL
-#define PIN_WIRE_SDA   SDA  //  04 // D2 SDA
-//#define PIN_MODE_BUTTON  D7   //   00 // D3 LOW_Flash
-#define PIN_LED          D4 // LED_BUILTIN //02 // D4 ESP8266_LED
-#define PIN_AUDIO_RX     D5
-#define PIN_AUDIO_TX     D3
-#define PIN_AUDIO_BUSY   D0
-//#define PIN_BUZZER       D4   //14 // D5
-//#define PIN_DHT22        D6   //12 // D6
-#define PIN_LEDS_CLOCK   D7   //13 // D7  // wird für LPD8806RGBW benötigt
-#define PIN_LEDS_DATA    D8   // 15 // D8
-#define PIN_LDR          A0    // A0 // ADC
-//#define PIN_SHOW_TIME_BUTTON  D6 //TXD0 // 01 // TXD0
-//#define PIN_ONOFF_BUTTON RXD0 //03 // RXD0
+//#define PIN_IR_RECEIVER  D6   // D6
+#define PIN_WIRE_SCL     SCL    // D1 SCL
+#define PIN_WIRE_SDA     SDA    // D2 SDA
+#define PIN_MODE_BUTTON  D7     // D7
+#define PIN_LED          D4     // LED_BUILTIN D4 ESP8266_LED
+#define PIN_AUDIO_RX     D5     // D5
+#define PIN_AUDIO_TX     D3     // D3
+#define PIN_AUDIO_BUSY   D0     // D0 // kein Interrupt!
+//#define PIN_BUZZER       D4   // D4
+#define PIN_LEDS_CLOCK   D6   // wird für LPD8806RGBW benötigt
+#define PIN_LEDS_DATA    D8     // D8 (z.B. WS2812B)
+#define PIN_LDR          A0     // A0 ADC
+//#define PIN_SHOW_TIME_BUTTON  // TXD0
+//#define PIN_ONOFF_BUTTON RXD0 // RXD0
 // GPIO 06 to GPIO 11 are
 // used for flash memory databus
-
 
 #endif
